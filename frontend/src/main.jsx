@@ -26,29 +26,15 @@ import {
   LockOutlined,
   ArrowRightOutlined,
 } from "@ant-design/icons";
+import markUrl from "../../assets/readme/mark.svg";
 import { api, esc, options } from "./api";
 import { Chat } from "./Chat";
 import { Imports, Assets, Monitor } from "./Console";
 import { Members } from "./Members";
 import { SqlTemplates } from "./SqlTemplates";
 import "./style.css";
-export function Mark() {
-  return (
-    <svg
-      aria-hidden="true"
-      width="31"
-      height="31"
-      viewBox="0 0 32 32"
-      fill="none"
-    >
-      <path
-        d="m3 7 8-4 10 4 8-4v22l-8 4-10-4-8 4V7Zm8-4v22m10-18v22"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
+export function Mark({ size = 31 }) {
+  return <img src={markUrl} width={size} height={size} alt="" />;
 }
 function Brand() {
   return (
@@ -80,7 +66,7 @@ function Login({ refresh }) {
       <div className="login">
         <div className="login-map" aria-hidden="true">
           <div className="atlas-grid" />
-          <div className="map-pins"><i /><span><Mark /></span><i /></div>
+          <div className="map-pins"><i /><Mark size={89} /><i /></div>
           <div className="map-label"><BookOutlined /> 知识库 <span /> <CodeOutlined /> 数据集</div>
         </div>
         <section>

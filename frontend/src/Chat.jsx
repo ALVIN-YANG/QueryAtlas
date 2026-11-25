@@ -181,7 +181,7 @@ function Answer({ turn, onRef, again }) {
   return (
     <div className="answer">
       <div className="assistant">
-        <Mark />
+        <Mark size={25} />
         QueryAtlas
       </div>
       <div className="prose">
@@ -474,7 +474,7 @@ export function Chat({ base, assets, datasets, move, mobile, allowed }) {
       <main className={"chat " + (!turns.length && !pending ? "empty" : "")}>
         {!turns.length && !pending ? (
           <div className="welcome">
-            <div className="welcome-mark"><Mark /></div>
+            <Mark size={53} />
             <h1>想了解什么？</h1>
             <p>问知识库，也可以直接查询已发布的数据。</p>
             {compose}

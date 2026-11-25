@@ -17,7 +17,7 @@ h1, h2, h3 { color: var(--ink); }
 .topbar, .brand, .assistant, .between, .stats { display: flex; align-items: center; }
 .topbar { height: var(--top); padding: 0 24px; gap: 14px; border-bottom: 1px solid var(--line); }
 .brand { font: 750 21px/1 var(--display); letter-spacing: -.055em; gap: 9px; color: var(--ink); flex: none; }
-.brand svg { padding: 6px; border-radius: 8px; background: var(--accent); color: white; }
+.brand img { display: block; }
 .topbar > .ant-select { min-width: 103px; max-width: min(200px, 28vw); margin-left: 7px; }
 .header-view { color: var(--quiet); font-size: 13px; padding-left: 15px; border-left: 1px solid #d8dbe8; white-space: nowrap; }
 .topbar .ant-avatar { background: #dedbf9; color: #4036a5; font-weight: 700; }
@@ -41,16 +41,6 @@ h1, h2, h3 { color: var(--ink); }
 .chat { display: flex; flex-direction: column; min-height: 0; }
 .chat.empty { display: grid; place-items: center; overflow: auto; }
 .welcome { width: min(100%, 754px); padding: 34px 26px 70px; }
-.welcome-mark {
-  display: grid;
-  width: 53px;
-  height: 53px;
-  place-items: center;
-  border-radius: 15px;
-  color: var(--accent);
-  border: 1px solid #e2dffa;
-  background: var(--light-accent);
-}
 .welcome h1 { font: 750 clamp(32px, 4vw, 49px)/1.17 var(--display); letter-spacing: -.058em; margin: 17px 0 10px; }
 .welcome p { color: var(--quiet); margin: 0 0 29px; font-size: 15px; }
 .composer.ant-sender {
@@ -106,7 +96,6 @@ h1, h2, h3 { color: var(--ink); }
 .scroll [role="status"] { color: var(--quiet); max-width: 800px; margin: 18px auto; }
 .answer { margin: 23px 0 12px; }
 .assistant { gap: 8px; font: 700 16px var(--display); }
-.assistant svg { width: 25px; height: 25px; padding: 4px; color: var(--accent); background: var(--light-accent); border-radius: 7px; }
 .prose { font-size: 15px; line-height: 1.85; white-space: pre-wrap; overflow-wrap: anywhere; margin: 14px 0; }
 .metric-provenance, .query-result, .references { margin-bottom: 13px; }
 .query-result .ant-card-extra { font-variant-numeric: tabular-nums; color: var(--quiet); }
@@ -187,8 +176,7 @@ h1, h2, h3 { color: var(--ink); }
 .map-pins { display: flex; align-items: center; justify-content: center; gap: 40px; position: relative; }
 .map-pins::before { content: ""; height: 1px; background: #a79be9; position: absolute; width: 94%; z-index: -1; }
 .map-pins i { width: 12px; height: 12px; border-radius: 50%; background: #b7aeff; box-shadow: 0 0 0 6px #b7aeff20; }
-.map-pins span { display: grid; place-items: center; border: 1px solid #aba0f6; background: #5145a5; border-radius: 22px; width: 89px; height: 89px; box-shadow: 0 0 45px #8b79f264; }
-.map-pins svg { width: 45px; height: 45px; }
+.map-pins img { border-radius: 22px; box-shadow: 0 0 45px #8b79f264; }
 .map-label { display: flex; align-items: center; justify-content: center; gap: 9px; margin-top: 26px; font-size: 13px; color: #e0dcff; }
 .map-label > span { width: 18px; }
 :where(button, a, summary):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -198,7 +186,7 @@ h1, h2, h3 { color: var(--ink); }
   .topbar { padding: 0 9px; gap: 5px; }
   .topbar > .ant-select { margin-left: 0; min-width: 72px; }
   .brand { font-size: 19px; gap: 5px; }
-  .brand svg { width: 27px; height: 27px; }
+  .brand img { width: 27px; height: 27px; }
   .fullName, .header-view { display: none; }
   .hamb { display: inline-flex !important; }
   .layout { padding: 0 0 5px; }
