@@ -3,7 +3,7 @@
 <p align="center"><strong>企业文档与数据问答工作台</strong></p>
 <p align="center">问文档能核对原文页码，问数据能查看 StarRocks 实际执行的 SQL 和 Query ID。</p>
 <p align="center">
-  <a href="#演示视频">演示视频</a> ·
+  <a href="https://blog.mlxb.cc/projects/queryatlas-demo/">观看演示视频</a> ·
   <a href="#界面实录">界面实录</a> ·
   <a href="#数据基线">数据基线</a> ·
   <a href="#快速启动">快速启动</a> ·
