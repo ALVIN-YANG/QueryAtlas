@@ -1,0 +1,274 @@
+{
+  "benchmark": "StarRocks BenchmarkTool / TPC-H SF1",
+  "refresh": "TPC-H DBGEN RF1/RF2, update set 1",
+  "capture": {
+    "date": "2026-11-25",
+    "environment": "QueryAtlas self-hosted test deployment; isolated demonstration workspace",
+    "synchronization_waits_trimmed": true
+  },
+  "full": {
+    "seconds": 327.556,
+    "batch": "mysql-0-bc4154f8f7f7",
+    "tables": {
+      "orders": {
+        "read": 1500000,
+        "rows": 1500000,
+        "delete_keys": 0
+      },
+      "lineitem": {
+        "read": 6001215,
+        "rows": 6001215,
+        "delete_keys": 0
+      }
+    },
+    "checks": {
+      "benchmarktool_commit": "0f9ce82ea978318e2830767ad27028659c7434fa",
+      "starrocks_version": "4.1.8-b16342f",
+      "batch": "mysql-0-bc4154f8f7f7",
+      "watermark": 0,
+      "source": {
+        "totals": {
+          "orders": {
+            "rows": 1500000,
+            "sums": [
+              "226829306447.46"
+            ]
+          },
+          "lineitem": {
+            "rows": 6001215,
+            "sums": [
+              "229577310901.20",
+              "153078795.00"
+            ]
+          }
+        },
+        "q4": [
+          [
+            "1-URGENT",
+            10594
+          ],
+          [
+            "2-HIGH",
+            10476
+          ],
+          [
+            "3-MEDIUM",
+            10410
+          ],
+          [
+            "4-NOT SPECIFIED",
+            10556
+          ],
+          [
+            "5-LOW",
+            10487
+          ]
+        ]
+      },
+      "target": {
+        "totals": {
+          "orders": {
+            "rows": 1500000,
+            "sums": [
+              "226829306447.46"
+            ]
+          },
+          "lineitem": {
+            "rows": 6001215,
+            "sums": [
+              "229577310901.20",
+              "153078795.00"
+            ]
+          }
+        },
+        "q4": [
+          [
+            "1-URGENT",
+            10594
+          ],
+          [
+            "2-HIGH",
+            10476
+          ],
+          [
+            "3-MEDIUM",
+            10410
+          ],
+          [
+            "4-NOT SPECIFIED",
+            10556
+          ],
+          [
+            "5-LOW",
+            10487
+          ]
+        ]
+      },
+      "official_baseline_checked": true,
+      "passed": true
+    }
+  },
+  "incremental": {
+    "seconds": 19.346,
+    "batch": "mysql-1-b81c91f4e56b",
+    "tables": {
+      "orders": {
+        "read": 1500,
+        "rows": 1500000,
+        "delete_keys": 1500
+      },
+      "lineitem": {
+        "read": 5822,
+        "rows": 6001032,
+        "delete_keys": 6005
+      }
+    },
+    "checks": {
+      "benchmarktool_commit": "0f9ce82ea978318e2830767ad27028659c7434fa",
+      "starrocks_version": "4.1.8-b16342f",
+      "batch": "mysql-1-b81c91f4e56b",
+      "watermark": 1,
+      "source": {
+        "totals": {
+          "orders": {
+            "rows": 1500000,
+            "sums": [
+              "226824309354.30"
+            ]
+          },
+          "lineitem": {
+            "rows": 6001032,
+            "sums": [
+              "229572470873.56",
+              "153074604.00"
+            ]
+          }
+        },
+        "q4": [
+          [
+            "1-URGENT",
+            10593
+          ],
+          [
+            "2-HIGH",
+            10477
+          ],
+          [
+            "3-MEDIUM",
+            10417
+          ],
+          [
+            "4-NOT SPECIFIED",
+            10560
+          ],
+          [
+            "5-LOW",
+            10487
+          ]
+        ]
+      },
+      "target": {
+        "totals": {
+          "orders": {
+            "rows": 1500000,
+            "sums": [
+              "226824309354.30"
+            ]
+          },
+          "lineitem": {
+            "rows": 6001032,
+            "sums": [
+              "229572470873.56",
+              "153074604.00"
+            ]
+          }
+        },
+        "q4": [
+          [
+            "1-URGENT",
+            10593
+          ],
+          [
+            "2-HIGH",
+            10477
+          ],
+          [
+            "3-MEDIUM",
+            10417
+          ],
+          [
+            "4-NOT SPECIFIED",
+            10560
+          ],
+          [
+            "5-LOW",
+            10487
+          ]
+        ]
+      },
+      "official_baseline_checked": false,
+      "passed": true
+    }
+  },
+  "workspace_access": {
+    "manager": {
+      "own_view": 200,
+      "other_space": 403
+    },
+    "operator": {
+      "own_view": 200,
+      "other_space": 403
+    },
+    "viewer": {
+      "own_view": 200,
+      "other_space": 403,
+      "trigger": 403
+    }
+  },
+  "web_query": {
+    "data": "tpch_orders",
+    "batch": "mysql-1-b81c91f4e56b",
+    "rows": [
+      [
+        "1-URGENT",
+        10593
+      ],
+      [
+        "2-HIGH",
+        10477
+      ],
+      [
+        "3-MEDIUM",
+        10417
+      ],
+      [
+        "4-NOT SPECIFIED",
+        10560
+      ],
+      [
+        "5-LOW",
+        10487
+      ]
+    ],
+    "queryId": "01a210f4-6e4a-7a0f-9893-1596cfca2181",
+    "timingsMs": {
+      "route": 5.35,
+      "sql_validation": 58.42,
+      "starrocks": 122,
+      "query_id": 3.84,
+      "total": 216.74
+    },
+    "sqlSource": {
+      "kind": "template",
+      "id": "tpch_q4_demo",
+      "definition": "TPC-H v3.0.1 §2.4.4。固定验证参数为 1993-07-01。筛选第三季度下单、至少有一条明细实际收货晚于承诺日期的订单，按优先级统计订单数。"
+    }
+  },
+  "document": {
+    "asset": "QA-7516-archiving-manual.pdf",
+    "kind": "fictional sample for document acceptance",
+    "page": 2,
+    "days": 47,
+    "original_opened": true
+  }
+}
