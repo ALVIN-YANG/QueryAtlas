@@ -1,0 +1,12 @@
+__pycache__/
+.env
+.venv/
+models/
+bootstrap.key
+
+frontend/node_modules/
+frontend/dist/
+llm/
+.feishu.pending
+
+/mysql-profiles/

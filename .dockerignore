@@ -1,0 +1,11 @@
+*
+!requirements.txt
+!queryatlas
+!queryatlas/**
+!tests
+!tests/**
+**/__pycache__
+!frontend
+frontend/*
+!frontend/dist
+!frontend/dist/**

@@ -1,0 +1,195 @@
+{
+  "measured_on": "2026-11-24",
+  "environment": "local isolated StarRocks 4.1.8 container",
+  "benchmark": "TPC-H SF1",
+  "exact_row_comparison": "Q4",
+  "starrocks_version": "4.1.8-b16342f",
+  "benchmarktool_commit": "0f9ce82ea978318e2830767ad27028659c7434fa",
+  "sql_sha256": "a808089546277d6dc24400e475950860d14ffa6dedad422224181e303a6ef714",
+  "reference_sha256": "9a6c7dbfde7735463a1754c74494512dbd82040b40c65c5e08cb72731fac5de7",
+  "table_counts": {
+    "customer": 150000,
+    "lineitem": 6001215,
+    "nation": 25,
+    "orders": 1500000,
+    "part": 200000,
+    "partsupp": 800000,
+    "region": 5,
+    "supplier": 10000
+  },
+  "expected": [
+    [
+      "1-URGENT",
+      10594
+    ],
+    [
+      "2-HIGH",
+      10476
+    ],
+    [
+      "3-MEDIUM",
+      10410
+    ],
+    [
+      "4-NOT SPECIFIED",
+      10556
+    ],
+    [
+      "5-LOW",
+      10487
+    ]
+  ],
+  "actual": [
+    [
+      "1-URGENT",
+      10594
+    ],
+    [
+      "2-HIGH",
+      10476
+    ],
+    [
+      "3-MEDIUM",
+      10410
+    ],
+    [
+      "4-NOT SPECIFIED",
+      10556
+    ],
+    [
+      "5-LOW",
+      10487
+    ]
+  ],
+  "passed": true,
+  "data_batch": "tpch-sf1-68b4097306956e87",
+  "source_sha256": {
+    "customer": "a035a33a703d3a043ecf97746b4e3a7988316c1c04923fda63231a59d5e46092",
+    "lineitem": "4feb529dfa255799bbf0243d2f2c5028375dfb684e592eb94775345602aa2728",
+    "nation": "7d47bc9397da331054fa92b8fb92e4c074004bad72dcbb893012093218dccf6c",
+    "orders": "3f111871419ea6f319fcc51c235d199b3edf16754c5e100be92927527e5f6c97",
+    "part": "cecd01146ae002aebe47e6b58bd81644df1d51d9c14da3425aea2b4976e02d60",
+    "partsupp": "3a68b7b7757cd3aacccb39c4bc092dc3edf3b7e0e7609a259c39238cae0be41e",
+    "region": "5a7c2fe9718db00ff5e5bc82a9ebfa8abc492cc75260d3c0ffb411974f235ab0",
+    "supplier": "f5699b5df22724f41bee9b8521798d8fc0cecd5beb0bd3bca96547ac58095547"
+  },
+  "qualification_sql_sha256": "e92656545e7deee877826103170ae9d5259d67937831ba2562cd9976d2f738f0",
+  "qualification_answers_sha256": "718dec38e919ffbfea6a146d2680cff9338ae3cc006ed9408a7ec15a00a159d0",
+  "qualification": {
+    "q1": {
+      "passed": true,
+      "expected_rows": 4,
+      "actual_rows": 4
+    },
+    "q2": {
+      "passed": true,
+      "expected_rows": 100,
+      "actual_rows": 100
+    },
+    "q3": {
+      "passed": true,
+      "expected_rows": 10,
+      "actual_rows": 10
+    },
+    "q4": {
+      "passed": true,
+      "expected_rows": 5,
+      "actual_rows": 5
+    },
+    "q5": {
+      "passed": true,
+      "expected_rows": 5,
+      "actual_rows": 5
+    },
+    "q6": {
+      "passed": true,
+      "expected_rows": 1,
+      "actual_rows": 1
+    },
+    "q7": {
+      "passed": true,
+      "expected_rows": 4,
+      "actual_rows": 4
+    },
+    "q8": {
+      "passed": true,
+      "expected_rows": 2,
+      "actual_rows": 2
+    },
+    "q9": {
+      "passed": true,
+      "expected_rows": 175,
+      "actual_rows": 175
+    },
+    "q10": {
+      "passed": true,
+      "expected_rows": 20,
+      "actual_rows": 20
+    },
+    "q11": {
+      "passed": true,
+      "expected_rows": 1048,
+      "actual_rows": 1048
+    },
+    "q12": {
+      "passed": true,
+      "expected_rows": 2,
+      "actual_rows": 2
+    },
+    "q13": {
+      "passed": true,
+      "expected_rows": 42,
+      "actual_rows": 42
+    },
+    "q14": {
+      "passed": true,
+      "expected_rows": 1,
+      "actual_rows": 1
+    },
+    "q15": {
+      "passed": true,
+      "expected_rows": 1,
+      "actual_rows": 1
+    },
+    "q16": {
+      "passed": true,
+      "expected_rows": 18314,
+      "actual_rows": 18314
+    },
+    "q17": {
+      "passed": true,
+      "expected_rows": 1,
+      "actual_rows": 1
+    },
+    "q18": {
+      "passed": true,
+      "expected_rows": 57,
+      "actual_rows": 57
+    },
+    "q19": {
+      "passed": true,
+      "expected_rows": 1,
+      "actual_rows": 1
+    },
+    "q20": {
+      "passed": true,
+      "expected_rows": 186,
+      "actual_rows": 186
+    },
+    "q21": {
+      "passed": true,
+      "expected_rows": 100,
+      "actual_rows": 100
+    },
+    "q22": {
+      "passed": true,
+      "expected_rows": 7,
+      "actual_rows": 7
+    }
+  },
+  "queryatlas_template_smoke": {
+    "template": "tpch_sf1_q4",
+    "query_id": "01a20dd4-9cd2-73d9-93a4-508b8bea900d",
+    "actual_rows_match_q4": true
+  }
+}

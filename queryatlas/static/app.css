@@ -1,0 +1,271 @@
+:root {
+  --ink: #1b3046;
+  --muted: #526b80;
+  --blue: #204fa0;
+  --line: #d8e2eb;
+  --base: #f3f6fa;
+}
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+body {
+  margin: 0;
+  background: var(--base);
+  color: var(--ink);
+  font:
+    15px/1.5 "Inter",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+}
+header {
+  height: 60px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 4vw;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  font-size: 27px;
+  letter-spacing: -1.3px;
+}
+.brand span {
+  color: var(--blue);
+}
+.divider {
+  padding-left: 16px;
+  border-left: 1px solid var(--line);
+  color: var(--muted);
+}
+#identity {
+  margin-left: auto;
+}
+#shell {
+  display: grid;
+  grid-template-columns: 212px minmax(0, 1fr);
+  min-height: calc(100vh - 60px);
+}
+aside {
+  background: #f9fbfd;
+  border-right: 1px solid var(--line);
+  padding: 28px 15px;
+}
+label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+nav {
+  display: grid;
+  gap: 4px;
+  margin-top: 22px;
+}
+button,
+input,
+select {
+  border: 1px solid #bdcbd9;
+  border-radius: 6px;
+  background: white;
+  color: var(--ink);
+  padding: 8px 11px;
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+:focus-visible {
+  outline: 3px solid #758ece;
+  outline-offset: 2px;
+}
+button.primary,
+nav button.active {
+  color: white;
+  background: var(--blue);
+  border-color: var(--blue);
+}
+nav button {
+  text-align: left;
+  background: transparent;
+  border-color: transparent;
+}
+main {
+  padding: 28px clamp(16px, 3.4vw, 54px);
+  min-width: 0;
+  max-width: 1450px;
+  width: 100%;
+}
+.top,
+.line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.top {
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+h1 {
+  font-size: 29px;
+  letter-spacing: -0.7px;
+}
+h2 {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+.card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 18px;
+  margin-bottom: 16px;
+  overflow: auto;
+}
+.login {
+  max-width: 410px;
+  margin: 10vh auto;
+  display: grid;
+  gap: 22px;
+  padding: 30px;
+}
+#login {
+  margin: auto;
+}
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.metric {
+  padding: 15px 20px;
+  flex: 1;
+  min-width: 125px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.metric b {
+  display: block;
+  font-size: 24px;
+}
+.muted,
+small {
+  color: var(--muted);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+th,
+td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+th {
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.fields {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+input,
+select {
+  min-width: 0;
+  max-width: 100%;
+}
+.wide {
+  flex: 1;
+  min-width: 180px;
+}
+.hit {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  white-space: pre-wrap;
+}
+.state {
+  color: #215b46;
+}
+.error {
+  color: #9c4032;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.actions label {
+  display: flex;
+  align-items: center;
+}
+#message {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90vw;
+  background: #193448;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 7px;
+}
+.key {
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+a {
+  color: var(--blue);
+}
+@media (max-width: 760px) {
+  #shell {
+    display: block;
+  }
+  aside {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  aside label {
+    display: flex;
+    align-items: center;
+  }
+  nav {
+    display: flex;
+    overflow: auto;
+    margin-top: 8px;
+  }
+  nav button {
+    white-space: nowrap;
+  }
+  main {
+    padding: 16px;
+  }
+  .divider {
+    display: none;
+  }
+  header {
+    gap: 8px;
+  }
+}

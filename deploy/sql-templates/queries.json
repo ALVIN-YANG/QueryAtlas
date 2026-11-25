@@ -1,0 +1,24 @@
+[
+  {
+    "id": "tpch_monthly_discount",
+    "space": "demo",
+    "dataset": "tpch",
+    "aliases": [
+      "用 TPC-H 的 lineitem，按发货日期 l_shipdate 所在自然月汇总折扣金额和明细数。折扣金额按 SUM(l_extendedprice * l_discount)，明细数按 COUNT(*)，按月份升序。",
+      "按发货自然月汇总折扣金额和明细数"
+    ],
+    "sql": "SELECT DATE_TRUNC('month', l_shipdate) AS month, SUM(l_extendedprice * l_discount) AS discount_amount, COUNT(*) AS line_count FROM lineitem GROUP BY DATE_TRUNC('month', l_shipdate) ORDER BY month ASC"
+  },
+  {
+    "id": "tpch_sf1_q4",
+    "space": "demo",
+    "dataset": "tpch",
+    "aliases": [
+      "TPC-H SF1 Q4",
+      "1993 年第三季度下的订单里，有多少单至少有一件商品比承诺日期晚收到？按优先级统计。",
+      "1993 年第三季度，各订单优先级有至少一条明细延期收货的订单数是多少？"
+    ],
+    "definition": "TPC-H v3.0.1 §2.4.4。固定验证参数为 1993-07-01。筛选第三季度下单、至少有一条明细实际收货晚于承诺日期的订单，按优先级统计订单数。",
+    "sql": "select  o_orderpriority,  count(*) as order_count\nfrom  orders\nwhere\n  o_orderdate >= date '1993-07-01'\n  and o_orderdate < date '1993-07-01' + interval '3' month\n  and exists (\n    select  * from  lineitem\n    where  l_orderkey = o_orderkey and l_commitdate < l_receiptdate\n  )\ngroup by o_orderpriority\norder by o_orderpriority;"
+  }
+]

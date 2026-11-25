@@ -1,0 +1,125 @@
+name: queryatlas
+x-app: &app
+  image: queryatlas-docs:local
+  build: .
+  restart: unless-stopped
+  environment: &env
+    DATABASE_URL: postgresql://qa:${QA_DB_PASSWORD:?configure .env}@db/queryatlas
+    PROBE_KEY: ${QA_PROBE_KEY:?configure .env}
+  networks: [qa]
+services:
+  starrocks:
+    image: starrocks/allin1-ubuntu:4.1.8
+    restart: unless-stopped
+    mem_limit: 8g
+    networks: [qa]
+    volumes:
+      - srmeta:/data/deploy/starrocks/fe/meta
+      - srdata:/data/deploy/starrocks/be/storage
+  llm:
+    profiles: [local-llm]
+    image: ghcr.io/ggml-org/llama.cpp:server@sha256:20db01dc9a92bff54a5b9fe4078caa52be6a0c1fa73859c6449e25b9cb67f998
+    restart: unless-stopped
+    command: ["-m","/models/qwen.gguf","--host","0.0.0.0","--port","8080","-t","4","-c","4096","--parallel","1"]
+    volumes: ['./llm:/models:ro']
+    networks: [qa]
+  db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: qa
+      POSTGRES_PASSWORD: ${QA_DB_PASSWORD}
+      POSTGRES_DB: queryatlas
+    volumes: [database:/var/lib/postgresql/data]
+    networks: [qa]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U qa -d queryatlas]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+  init:
+    <<: *app
+    restart: "no"
+    environment:
+      <<: *env
+      BOOTSTRAP_FILE: /run/secrets/bootstrap
+    secrets: [bootstrap]
+    depends_on:
+      db: {condition: service_healthy}
+    command: [python, -m, queryatlas.ingest, init]
+  api:
+    <<: *app
+    depends_on:
+      init: {condition: service_completed_successfully}
+    volumes:
+      - originals:/data/originals
+      - ./models:/models:ro
+      - alarms:/monitor
+      - ./deploy/sql-templates:/etc/queryatlas/sql-templates:ro
+      - ./mysql-profiles:/etc/queryatlas/mysql:ro
+    ports: ['127.0.0.1:${QUERYATLAS_PORT:-18650}:8000']
+    environment:
+      <<: *env
+      QA_SR_READ: ${QA_SR_READ}
+      QA_SR_LOAD: ${QA_SR_LOAD}
+      LLM_PROVIDER: ${LLM_PROVIDER:-local}
+      QA_SQL_TEMPLATE_FILE: /etc/queryatlas/sql-templates/queries.json
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-local}
+      DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:-}
+      DASHSCOPE_WORKSPACE_ID: ${DASHSCOPE_WORKSPACE_ID:-}
+      FEISHU_LOGIN_ENABLED: ${FEISHU_LOGIN_ENABLED:-0}
+      FEISHU_APP_ID: ${FEISHU_APP_ID:-}
+      FEISHU_APP_SECRET: ${FEISHU_APP_SECRET:-}
+      FEISHU_REDIRECT_URI: ${FEISHU_REDIRECT_URI:-}
+      FEISHU_TENANT_KEY: ${FEISHU_TENANT_KEY:-}
+    command: [uvicorn, queryatlas.app:app, --host, 0.0.0.0, --port, '8000', --no-access-log]
+  worker:
+    <<: *app
+    depends_on:
+      init: {condition: service_completed_successfully}
+    volumes: [originals:/data/originals, './models:/models:ro']
+    environment:
+      <<: *env
+      EMBEDDING_PROVIDER: ${EMBEDDING_PROVIDER:-local}
+      DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:-}
+      DASHSCOPE_WORKSPACE_ID: ${DASHSCOPE_WORKSPACE_ID:-}
+    command: [python, -m, queryatlas.ingest, worker]
+  mysql-sync:
+    <<: *app
+    profiles: [mysql-sync]
+    depends_on:
+      init: {condition: service_completed_successfully}
+    volumes:
+      - ./mysql-profiles:/etc/queryatlas/mysql:ro
+    environment:
+      <<: *env
+      QA_ETL_SR_HOST: starrocks
+      QA_ETL_SR_LOAD_URL: http://starrocks:8040
+      QA_ETL_SR_USER: ${QA_ETL_SR_USER:-}
+      QA_ETL_SR_PASSWORD: ${QA_ETL_SR_PASSWORD:-}
+    command: [python, -m, queryatlas.mysql_worker]
+  watchdog:
+    <<: *app
+    depends_on:
+      init: {condition: service_completed_successfully}
+    volumes: [alarms:/monitor]
+    environment:
+      <<: *env
+      QA_SR_READ: ${QA_SR_READ}
+      LLM_PROVIDER: ${LLM_PROVIDER:-local}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      FEISHU_WEBHOOK: ${FEISHU_WEBHOOK:-}
+      FEISHU_SECRET: ${FEISHU_SECRET:-}
+    command: [python, -m, queryatlas.monitor]
+secrets:
+  bootstrap:
+    file: ./bootstrap.key
+networks:
+  qa: {}
+volumes:
+  srmeta: {}
+  srdata: {}
+  database: {}
+  originals: {}
+  alarms: {}

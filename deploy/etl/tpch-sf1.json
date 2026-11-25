@@ -1,0 +1,42 @@
+{
+  "space": "demo",
+  "dataset": "tpch_mysql",
+  "description": "TPC-H SF1 · MySQL 同步",
+  "tables": {
+    "orders": {
+      "key": ["o_orderkey"],
+      "columns": {
+        "o_orderkey": "BIGINT",
+        "o_custkey": "BIGINT",
+        "o_orderstatus": "VARCHAR(1)",
+        "o_totalprice": "DECIMAL(15,2)",
+        "o_orderdate": "DATE",
+        "o_orderpriority": "VARCHAR(15)",
+        "o_clerk": "VARCHAR(15)",
+        "o_shippriority": "INT",
+        "o_comment": "VARCHAR(79)"
+      }
+    },
+    "lineitem": {
+      "key": ["l_orderkey", "l_linenumber"],
+      "columns": {
+        "l_orderkey": "BIGINT",
+        "l_partkey": "BIGINT",
+        "l_suppkey": "BIGINT",
+        "l_linenumber": "INT",
+        "l_quantity": "DECIMAL(15,2)",
+        "l_extendedprice": "DECIMAL(15,2)",
+        "l_discount": "DECIMAL(15,2)",
+        "l_tax": "DECIMAL(15,2)",
+        "l_returnflag": "VARCHAR(1)",
+        "l_linestatus": "VARCHAR(1)",
+        "l_shipdate": "DATE",
+        "l_commitdate": "DATE",
+        "l_receiptdate": "DATE",
+        "l_shipinstruct": "VARCHAR(25)",
+        "l_shipmode": "VARCHAR(10)",
+        "l_comment": "VARCHAR(44)"
+      }
+    }
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "measured_on": "2026-11-25",
+  "environment": "Single-node test deployment, MySQL 8.0.46 and StarRocks 4.1.8",
+  "baseline_input_sha256": {
+    "orders.tbl": "3f111871419ea6f319fcc51c235d199b3edf16754c5e100be92927527e5f6c97",
+    "lineitem.tbl": "4feb529dfa255799bbf0243d2f2c5028375dfb684e592eb94775345602aa2728"
+  },
+  "refresh_set_1_input_sha256": {
+    "orders.tbl.u1": "9959cc8fc853d82cc8a424828af2ea4c3a9e9b36f3ec4b0fece52f130a26a8aa",
+    "lineitem.tbl.u1": "bd924b1d723f906ca63f8b76e8dd19deb7c55374cbb0cc47785c73bb90cdea1f",
+    "delete.1": "801d3d83fd0735a07ac9c60c247d93f2233bdd17d1e5ff7a7e9c81629c6cb8b9"
+  },
+  "full_container_elapsed_seconds": 326.045,
+  "full_timing_note": "Docker recorded container start and finish. The first run committed the full batch successfully before JSON serialization of the unsigned MySQL watermark failed. The watermark was converted to an integer in the CLI and verified in the subsequent incremental run.",
+  "full_reconciliation": {
+    "benchmarktool_commit": "0f9ce82ea978318e2830767ad27028659c7434fa",
+    "starrocks_version": "4.1.8-b16342f",
+    "batch": "mysql-0-ea767c8a832d",
+    "watermark": 0,
+    "source": {
+      "totals": {
+        "orders": {
+          "rows": 1500000,
+          "sums": [
+            "226829306447.46"
+          ]
+        },
+        "lineitem": {
+          "rows": 6001215,
+          "sums": [
+            "229577310901.20",
+            "153078795.00"
+          ]
+        }
+      },
+      "q4": [
+        [
+          "1-URGENT",
+          10594
+        ],
+        [
+          "2-HIGH",
+          10476
+        ],
+        [
+          "3-MEDIUM",
+          10410
+        ],
+        [
+          "4-NOT SPECIFIED",
+          10556
+        ],
+        [
+          "5-LOW",
+          10487
+        ]
+      ]
+    },
+    "target": {
+      "totals": {
+        "orders": {
+          "rows": 1500000,
+          "sums": [
+            "226829306447.46"
+          ]
+        },
+        "lineitem": {
+          "rows": 6001215,
+          "sums": [
+            "229577310901.20",
+            "153078795.00"
+          ]
+        }
+      },
+      "q4": [
+        [
+          "1-URGENT",
+          10594
+        ],
+        [
+          "2-HIGH",
+          10476
+        ],
+        [
+          "3-MEDIUM",
+          10410
+        ],
+        [
+          "4-NOT SPECIFIED",
+          10556
+        ],
+        [
+          "5-LOW",
+          10487
+        ]
+      ]
+    },
+    "official_baseline_checked": true,
+    "passed": true
+  },
+  "failure_probe": "orders: row count differs (source 1500000, target 1499999)",
+  "on_failure_old_batch_preserved": true,
+  "incremental": {
+    "status": "published",
+    "mode": "incremental",
+    "batch": "mysql-1-78f6343ead02",
+    "watermark": 1,
+    "physical": "qa_mysql_78f6343ead024bf797b868c4aa3c52a7",
+    "tables": {
+      "orders": {
+        "rows": 1500000,
+        "read": 1500,
+        "delete_keys": 1500
+      },
+      "lineitem": {
+        "rows": 6001032,
+        "read": 5822,
+        "delete_keys": 6005
+      }
+    },
+    "seconds": 18.545
+  },
+  "replay": {
+    "status": "unchanged",
+    "watermark": 1
+  },
+  "reconciliation": {
+    "benchmarktool_commit": "0f9ce82ea978318e2830767ad27028659c7434fa",
+    "starrocks_version": "4.1.8-b16342f",
+    "batch": "mysql-1-78f6343ead02",
+    "watermark": 1,
+    "source": {
+      "totals": {
+        "orders": {
+          "rows": 1500000,
+          "sums": [
+            "226824309354.30"
+          ]
+        },
+        "lineitem": {
+          "rows": 6001032,
+          "sums": [
+            "229572470873.56",
+            "153074604.00"
+          ]
+        }
+      },
+      "q4": [
+        [
+          "1-URGENT",
+          10593
+        ],
+        [
+          "2-HIGH",
+          10477
+        ],
+        [
+          "3-MEDIUM",
+          10417
+        ],
+        [
+          "4-NOT SPECIFIED",
+          10560
+        ],
+        [
+          "5-LOW",
+          10487
+        ]
+      ]
+    },
+    "target": {
+      "totals": {
+        "orders": {
+          "rows": 1500000,
+          "sums": [
+            "226824309354.30"
+          ]
+        },
+        "lineitem": {
+          "rows": 6001032,
+          "sums": [
+            "229572470873.56",
+            "153074604.00"
+          ]
+        }
+      },
+      "q4": [
+        [
+          "1-URGENT",
+          10593
+        ],
+        [
+          "2-HIGH",
+          10477
+        ],
+        [
+          "3-MEDIUM",
+          10417
+        ],
+        [
+          "4-NOT SPECIFIED",
+          10560
+        ],
+        [
+          "5-LOW",
+          10487
+        ]
+      ]
+    },
+    "official_baseline_checked": false,
+    "passed": true
+  },
+  "browser_q4": {
+    "batch": "mysql-1-78f6343ead02",
+    "query_id": "01a210b8-3eab-78b1-aece-e305206bd585",
+    "starrocks_query_ms": 103,
+    "rows": [
+      [
+        "1-URGENT",
+        10593
+      ],
+      [
+        "2-HIGH",
+        10477
+      ],
+      [
+        "3-MEDIUM",
+        10417
+      ],
+      [
+        "4-NOT SPECIFIED",
+        10560
+      ],
+      [
+        "5-LOW",
+        10487
+      ]
+    ]
+  }
+}

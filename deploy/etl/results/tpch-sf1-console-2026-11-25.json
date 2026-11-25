@@ -1,0 +1,218 @@
+{
+  "measured_on": "2026-11-25",
+  "benchmark": "TPC-H SF1",
+  "dataset": "tpch_mysql_console",
+  "benchmarktool_commit": "0f9ce82ea978318e2830767ad27028659c7434fa",
+  "starrocks_version": "4.1.8-b16342f",
+  "refresh_set": 1,
+  "execution": "Actual browser actions, with incremental runs triggered by a workspace operator.",
+  "runs": [
+    {
+      "id": 1,
+      "dataset": "tpch_mysql_console",
+      "mode": "incremental",
+      "actor": "admin",
+      "status": "failed",
+      "created": "2026-11-25T03:36:27.627931+00:00",
+      "started": "2026-11-25T03:36:29.001696+00:00",
+      "finished": "2026-11-25T03:36:29.064990+00:00",
+      "error": "请先完成一次全量同步",
+      "result": null
+    },
+    {
+      "id": 2,
+      "dataset": "tpch_mysql_console",
+      "mode": "full",
+      "actor": "admin",
+      "status": "published",
+      "created": "2026-11-25T03:36:36.001053+00:00",
+      "started": "2026-11-25T03:36:37.074274+00:00",
+      "finished": "2026-11-25T03:42:01.675150+00:00",
+      "error": null,
+      "result": {
+        "mode": "full",
+        "batch": "mysql-0-14d7ca848e63",
+        "status": "published",
+        "tables": {
+          "orders": {
+            "read": 1500000,
+            "rows": 1500000,
+            "delete_keys": 0
+          },
+          "lineitem": {
+            "read": 6001215,
+            "rows": 6001215,
+            "delete_keys": 0
+          }
+        },
+        "seconds": 324.578,
+        "watermark": 0
+      }
+    },
+    {
+      "id": 3,
+      "dataset": "tpch_mysql_console",
+      "mode": "incremental",
+      "actor": "测试空间操作员",
+      "status": "published",
+      "created": "2026-11-25T03:42:43.282627+00:00",
+      "started": "2026-11-25T03:42:44.324099+00:00",
+      "finished": "2026-11-25T03:43:04.981166+00:00",
+      "error": null,
+      "result": {
+        "mode": "incremental",
+        "batch": "mysql-1-8e51caa4e402",
+        "status": "published",
+        "tables": {
+          "orders": {
+            "read": 1500,
+            "rows": 1500000,
+            "delete_keys": 1500
+          },
+          "lineitem": {
+            "read": 5822,
+            "rows": 6001032,
+            "delete_keys": 6005
+          }
+        },
+        "seconds": 20.63,
+        "watermark": 1
+      }
+    },
+    {
+      "id": 4,
+      "dataset": "tpch_mysql_console",
+      "mode": "incremental",
+      "actor": "测试空间操作员",
+      "status": "unchanged",
+      "created": "2026-11-25T03:43:06.873660+00:00",
+      "started": "2026-11-25T03:43:06.990812+00:00",
+      "finished": "2026-11-25T03:43:07.103755+00:00",
+      "error": null,
+      "result": {
+        "status": "unchanged",
+        "watermark": 1
+      }
+    }
+  ],
+  "full_check": {
+    "official_q4": [
+      [
+        "1-URGENT",
+        10594
+      ],
+      [
+        "2-HIGH",
+        10476
+      ],
+      [
+        "3-MEDIUM",
+        10410
+      ],
+      [
+        "4-NOT SPECIFIED",
+        10556
+      ],
+      [
+        "5-LOW",
+        10487
+      ]
+    ],
+    "totals": {
+      "orders": {
+        "rows": 1500000,
+        "sums": [
+          "226829306447.46"
+        ]
+      },
+      "lineitem": {
+        "rows": 6001215,
+        "sums": [
+          "229577310901.20",
+          "153078795.00"
+        ]
+      }
+    },
+    "passed": true
+  },
+  "incremental_check": {
+    "q4": [
+      [
+        "1-URGENT",
+        10593
+      ],
+      [
+        "2-HIGH",
+        10477
+      ],
+      [
+        "3-MEDIUM",
+        10417
+      ],
+      [
+        "4-NOT SPECIFIED",
+        10560
+      ],
+      [
+        "5-LOW",
+        10487
+      ]
+    ],
+    "totals": {
+      "orders": {
+        "rows": 1500000,
+        "sums": [
+          "226824309354.30"
+        ]
+      },
+      "lineitem": {
+        "rows": 6001032,
+        "sums": [
+          "229572470873.56",
+          "153074604.00"
+        ]
+      }
+    },
+    "passed": true
+  },
+  "permissions": {
+    "viewer_read": 200,
+    "viewer_trigger": 403,
+    "viewer_manage": 403,
+    "operator_manage": 403,
+    "cross_workspace_read": 403,
+    "cross_workspace_trigger": 403,
+    "duplicate_active": 409,
+    "profiles_hidden_from_viewer": true,
+    "unavailable_profile_cross_workspace": 422
+  },
+  "browser_query": {
+    "question": "1993 年第三季度下的订单里，有多少单至少有一件商品比承诺日期晚收到？按优先级统计。",
+    "batch": "mysql-1-8e51caa4e402",
+    "rows": [
+      [
+        "1-URGENT",
+        10593
+      ],
+      [
+        "2-HIGH",
+        10477
+      ],
+      [
+        "3-MEDIUM",
+        10417
+      ],
+      [
+        "4-NOT SPECIFIED",
+        10560
+      ],
+      [
+        "5-LOW",
+        10487
+      ]
+    ],
+    "starrocks_ms": 177,
+    "query_id": "01a210cd-03f6-7950-aabb-ff47e5fbe746",
+    "sql_source": "tpch_mysql_console_q4"
+  }
+}
